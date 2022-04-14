@@ -1,85 +1,18 @@
 # Luhn-Algorithm
 Checksum Validation Algorithm
 
-#include <stdio.h>
-#include <iostream>
-#include <string>
+Luhn Algorithm is a simplechecksum formula used to validate different identification numbers like
+# Credit Card Numbers, IMEI Numbers, National Provider Identifier Numbers,etc. 
 
-using namespace std;
+What is checksum?
+Answer : It is a small size calculated data from a input for the purpose of detecting transmission or storage.
 
-//For the valid inputs
-bool isstringnumber(string s)
-{
-	for(int i=0;i<s.length();i++)
-	{
-		if(s[i]<'0' || s[i]>'9')
-		{
-			return false;
-		}
-		return true;
-	}
-}
+# Steps to be followed :
+16 digits credit card number -
 
-int main()
-{
-	//Here, we are taking the inputs in the sting format
-	//so, we have to take the difference with 48 (ASCII value of '0' =48) to change it to integer
-	string cardNum;
-	
-	cout << "# This program uses the Luhn Algorigthm to validate a Card number. #" << endl;
-    cout << "You can enter 'exit' anytime to quit." << endl;
-    cout<<endl;
-    
-    
-    while (true) {
-        
-        cout << "Please enter a Card number to validate: ";
-        cin >> cardNum;
-        
-        if (cardNum == "exit")
-            break;
-            
-        else if (!isstringnumber(cardNum)) {
-            cout << "Invalid input! ";
-            continue;
-        }
-        
-        //step 1 
-        //multiply of 2 with the every second digit from the right of the card number
-        //if the product is in two digits, take the sum of them 
-        //take the sum of above calculated values
-		
-		int len=cardNum.length();
-		int doubleevensum=0;
-		
-		for(int i=len-2;i>=0;i=i-2)
-		{
-			int dbl=(cardNum[i]-48)*2;	
-			if(dbl>9)
-			{
-				dbl=(dbl/10)+(dbl%10);
-			}
-			doubleevensum+=dbl;
-		} 
-		
-		//step 2
-		//take the sum of the remaining numbers
-		
-		int oddsum=0;
-		
-		for(int i=len-1;i>=0;i=i-2)
-		{
-			oddsum += (cardNum[i]-48);
-		}
-		
-		//step3
-		//take the sum of the above both results
-		//check if it is the modulus of 10 to be considered as the VALID card number 
-		
-	int ultimate_sum=doubleevensum+oddsum;
-    cout<< (ultimate_sum % 10==0 ? "The given card number is VALID" : "The given card number is INVALID");
-    cout<<endl;
-    continue;
-	return 0;	
-	}
-}
+1)Drop the last digit from the card number. The last digit (16th position) is called Luhn key.
+2)Evaluate each digit from right to left. When the digit is in odd positions, we multiply it by 2.
+3)Add all the numbers together.
+4)Compute the Luhn Key. This (last) digit is the amount that you would need to add to the previous total (computed above in step 3) to get a multiple of 10 (Modulo 10). This Luhn key has to be equal to the last digit which has been removed in step 1.
+
+Hence, if Luhn Key is equal to the calculated last digit by these steps, then it is considered to be a VALID credit card number.
