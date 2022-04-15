@@ -17,3 +17,19 @@ Answer : It is a small size calculated data from a input for the purpose of dete
 
 Hence, if Luhn Key is equal to the calculated last digit by these steps, then it is considered to be a VALID credit card number.
 
+# Major Industry Identifier (MII) - in the attached photo.
+The first digit of the credit/debit card is the Major Industry Identifier (MII). It indicates the category of the entity which issued the card.
+* 1 and 2: Airlines
+* 3: Travel and Entertainment
+* 4 and 5: Banking and Financial Services
+* 6: Merchandising and Banking
+* 7: Petroleum
+* 8: Health care, Telecommunications
+* 9: National Assignment
+
+# Issuer Identification Number (IIN) - in the attached photo.
+The first six digits are the Issuer Identification Number (IIN). These denotes the institution that issued the card.
+For example, Visa cards begin with a 4, while MasterCard ones start with number between 51 and 55.
+
+The first fifteen digits are determined by the issuing bank, 
+# but the last digit, called the *check digit*, is mathematically determined based on all other digits,using Luhn Algorithm.
